@@ -132,7 +132,8 @@ if (!reduce && gsap && ScrollTrigger) {
       const capEl = sec.querySelector('[data-c-cap]');
       const linkEl = sec.querySelector('[data-c-link]');
       const N = cards.length;
-      const step = desk ? 316 : 238;
+      const step = desk ? 316 : 240; // altezza card + spaziatura 16px
+      const twistK = 38 / step, spinK = 0.09;
       const total = N * step;
       const wrap = gsap.utils.wrap(-total / 2, total / 2);
       const wrapIdx = gsap.utils.wrap(0, N);
@@ -217,13 +218,13 @@ if (!reduce && gsap && ScrollTrigger) {
       stepBtns.forEach((b, i) => b.addEventListener('click', stepHandlers[i]));
 
       const tick = (_, dt) => {
-        if (inView && !dragging && focused === -1) userPos += (dt / 1000) * 24;
+        if (inView && !dragging && focused === -1) userPos += (dt / 1000) * 40;
         const target = scrollPos + userPos;
         curPos += (target - curPos) * 0.14;
         const centerIdx = focused !== -1 ? focused : wrapIdx(Math.round(curPos / step));
         syncHud(centerIdx);
 
-        const visRange = step * 3.2;
+        const visRange = step * 3.6;
         const preloadRange = step * 5.5;
         for (let i = 0; i < N; i++) {
           const d = wrap(i * step - curPos);
@@ -237,23 +238,14 @@ if (!reduce && gsap && ScrollTrigger) {
           if (card.style.visibility !== 'visible') card.style.visibility = 'visible';
           if (imgs[i]?.loading === 'lazy') imgs[i].loading = 'eager';
 
-          const t = d / (step * 2.5);
+          // HorizonX Rotating Gallery: colonna unica, ogni card gira sull'asse Y; twist = angolo lungo la colonna, spin = rotazione con lo scroll
           const isFoc = focused === i;
-          const damp = isFoc ? 0 : (focused !== -1 ? 1.15 : 1);
-          const rotY = isFoc ? 0 : t * 66;
-          const rotX = isFoc ? 0 : -t * 18;
-          const rotZ = isFoc ? 0 : -t * 11;
-          const x = isFoc ? 0 : Math.sin(t * Math.PI * 0.75) * (desk ? 34 : 16);
-          const y = isFoc ? d * 0.15 : d * 0.78;
-          const z = isFoc ? 95 : -Math.abs(t) * (desk ? 155 : 95) - (focused !== -1 ? 55 : 0);
-          const sc = isFoc ? 1.05 : Math.max(0.76, 1 - Math.abs(t) * 0.12);
-          const op = isFoc ? 1 : (focused !== -1 ? Math.max(0.18, 0.42 - Math.abs(t) * 0.18) : Math.max(0.15, 1 - Math.pow(Math.abs(t) * 0.78, 2)));
-
+          const ang = isFoc ? 0 : d * twistK + curPos * spinK;
+          const z = isFoc ? 90 : 0;
           card.classList.toggle('is-focused', isFoc);
           card.style.zIndex = String(isFoc ? 200 : Math.round(100 - absD * 0.1));
-          card.style.opacity = op.toFixed(3);
-          card.style.transform = `translate3d(${x.toFixed(1)}px,${(y * damp).toFixed(1)}px,${z.toFixed(1)}px) rotateY(${rotY.toFixed(1)}deg) rotateX(${rotX.toFixed(1)}deg) rotateZ(${rotZ.toFixed(1)}deg) scale(${sc.toFixed(3)})`;
-          if (imgs[i]) imgs[i].style.transform = `translateY(${(-t * 20).toFixed(1)}px) scale(1.14)`;
+          card.style.opacity = focused !== -1 && !isFoc ? '0.35' : '1';
+          card.style.transform = `translate3d(0,${d.toFixed(1)}px,${z}px) rotateY(${ang.toFixed(1)}deg)`;
         }
       };
       gsap.ticker.add(tick);

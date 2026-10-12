@@ -258,10 +258,16 @@ section[id]{scroll-margin-top:var(--head)}
 .c-meta small{display:block;font-size:9px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#e2cdb2;margin-bottom:2px}
 .c-meta strong{display:block;font-size:14px;font-weight:600;letter-spacing:-.03em;line-height:1.2}
 .c-meta i{flex:none;width:30px;height:30px;border-radius:50%;border:1px solid rgba(255,255,255,.55);display:grid;place-items:center;font-style:normal;font-size:13px}
-.motion .cascade-stage{height:min(78vh,700px);perspective:1150px;overflow:hidden;cursor:grab;user-select:none;touch-action:pan-y;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 10%,#000 90%,transparent 100%);mask-image:linear-gradient(180deg,transparent 0,#000 10%,#000 90%,transparent 100%)}
+.motion main section.cascade{background:var(--deep);color:#f4f0e9}
+.motion .cascade .label,.motion .cascade .lead,.motion .cascade-count,.motion .cascade-hint{color:#cfc6b6}
+.motion .cascade h2,.motion .cascade-cap,.motion .cascade-count b,.motion .cascade .link{color:#f4f0e9}
+.motion .cascade-hud{border-color:rgba(244,240,233,.2)}
+.motion .cascade em{color:var(--sand)}
+.motion .c-step{background:transparent;color:#f4f0e9;border-color:rgba(244,240,233,.35)}
+.motion .cascade-stage{height:min(92vh,860px);perspective:1400px;overflow:hidden;cursor:grab;user-select:none;touch-action:pan-y;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 10%,#000 90%,transparent 100%);mask-image:linear-gradient(180deg,transparent 0,#000 10%,#000 90%,transparent 100%)}
 .motion .cascade-stage.is-dragging{cursor:grabbing}
 .motion .cascade-track{display:block;position:relative;width:100%;height:100%;max-height:none;overflow:visible;padding:0;transform-style:preserve-3d}
-.motion .c-card{position:absolute;left:50%;top:50%;width:400px;height:300px;margin:-150px 0 0 -200px;aspect-ratio:auto;box-shadow:0 24px 54px rgba(26,24,20,.22);will-change:transform,opacity;backface-visibility:hidden}
+.motion .c-card{position:absolute;left:50%;top:50%;width:400px;height:300px;margin:-150px 0 0 -200px;aspect-ratio:auto;will-change:transform;backface-visibility:visible;transition:opacity .35s}
 .motion .c-card.is-focused{box-shadow:0 32px 75px rgba(20,18,14,.38);outline:2px solid var(--accent)}
 .motion .c-card.is-focused .c-meta i{background:#fff;color:var(--ink)}
 
@@ -342,7 +348,7 @@ html.lenis,html.lenis body{height:auto}
   .card{width:74vw}
   .kitchen,.room,.offer-grid,.about,.reviews,.visit-grid,.cascade-grid{grid-template-columns:1fr;gap:42px}
   .motion .cascade-stage{height:min(64svh,480px);perspective:900px}
-  .motion .c-card{width:min(82vw,310px);height:224px;margin:-112px 0 0 calc(min(82vw,310px)*-.5)}
+  .motion .c-card{width:min(82vw,300px);height:224px;margin:-112px 0 0 calc(min(82vw,300px)*-.5)}
   .faq-a{padding-right:0}
   .room.flip .room-media{order:0}
   .room-float{right:0;width:44%}
