@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f0e9">
+  <title>Chi siamo, showroom e orari — Centro Casa, Pratola Serra (AV)</title>
+  <meta name="description" content="Centro Casa a Pratola Serra da oltre 50 anni: chi siamo, lo showroom di Via Roma 18, orari di apertura, mappa e contatti.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="categorie.css">
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script defer src="main.js"></script>
+</head>
+<body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="star" viewBox="0 0 20 20"><path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6L10 15l-5.4 3 1.2-6L1.3 7.8l6.1-.7z"/></symbol></svg>
+  <a class="skip" href="#main">Vai al contenuto</a>
+
+  <div class="topbar">
+    <span class="status" data-open-status>Lun 16–20 · Mar–Sab 9–12:30 e 16–20</span>
+    <span class="hide-m">Via Roma 18, Pratola Serra (AV)</span>
+    <a href="https://www.google.com/maps/dir/?api=1&amp;destination=Centro+Casa+Via+Roma+18+Pratola+Serra" target="_blank" rel="noopener">Indicazioni</a>
+  </div>
+
+  <header class="header" id="top">
+    <a class="brand" href="index.html" aria-label="Centro Casa, home"><span class="brand-icon" aria-hidden="true"></span><span>CENTRO<b>CASA</b><small>PRATOLA SERRA</small></span></a>
+    <button class="burger" type="button" aria-expanded="false" aria-controls="nav" aria-label="Apri il menu"><span></span><span></span></button>
+    <nav id="nav" class="nav" aria-label="Navigazione principale">
+      <a href="cucine.html">Cucine</a>
+      <div class="nav-group"><a href="arredamento.html">Arredamento</a><div class="sub"><a href="camere.html">Camere e letti</a><a href="divani.html">Divani e poltrone</a><a href="materassi.html">Materassi</a><a href="tavoli.html">Tavoli e sedie</a><a href="elettrodomestici.html">Elettrodomestici</a><a href="complementi.html">Complementi e regalo</a></div></div>
+      <a href="bomboniere.html">Bomboniere</a>
+      <a href="chi-siamo.html" aria-current="page">Chi siamo e orari</a>
+      <a href="faq.html">FAQ</a>
+      <a class="nav-cta" href="https://wa.me/393881535764?text=Ciao%20Centro%20Casa%2C%20vorrei%20prenotare%20una%20visita%20in%20showroom" target="_blank" rel="noopener">Prenota una visita <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="sec alt about" id="chi-siamo" aria-labelledby="a-title">
+      <figure class="about-photo"><img src="assets/img/ig-team-danilo-maria.webp" alt="Danilo e Maria nel negozio Centro Casa" loading="lazy"><figcaption>Danilo e Maria</figcaption></figure>
+      <div>
+        <p class="label">01 / Chi siamo</p>
+        <h1 class="page-h1" id="a-title" data-split>Una famiglia,<br><em>da oltre 50 anni.</em></h1>
+        <p class="lead">Centro Casa è a Pratola Serra, a 10 km da Avellino. Danilo segue i progetti e l'arredamento, Maria le bomboniere e le liste nozze.</p>
+        <p class="lead">Materioteca, misure, progetto, montaggio e assistenza sugli elettrodomestici: tutto in un unico showroom.</p>
+        <p class="quote">“Il servizio non si ferma alla cassa.”</p>
+        <ol class="services">
+          <li><b>01</b><strong>Materioteca</strong><p>Materiali e finiture da vedere e toccare.</p></li>
+          <li><b>02</b><strong>Misure e progetto</strong><p>Prendiamo le misure a casa tua e progettiamo con te.</p></li>
+          <li><b>03</b><strong>Trasporto e montaggio</strong><p>Consegniamo e montiamo noi.</p></li>
+          <li><b>04</b><strong>Assistenza elettrodomestici</strong><p>Vendita e assistenza anche dopo l'acquisto.</p></li>
+          <li><b>05</b><strong>Liste nozze e bomboniere</strong><p>Rivenditori Claraluna, con Maria.</p></li>
+        </ol>
+        <div class="actions"><a class="btn btn-dark" href="https://wa.me/393881535764?text=Ciao%20Centro%20Casa%2C%20vorrei%20prenotare%20una%20visita%20in%20showroom" target="_blank" rel="noopener">Prenota una visita <span aria-hidden="true">↗</span></a><a class="link" href="#orari">Orari e mappa <span aria-hidden="true">↓</span></a></div>
+      </div>
+    </section>
+
+    <section class="showroom" id="showroom" aria-labelledby="sr-title">
+      <a class="sr-bg" href="#foto-showroom" aria-label="Foto dello showroom"><img src="assets/img/ig-showroom-isola.webp" alt="Cucina con isola esposta nello showroom Centro Casa" loading="lazy"></a>
+      <div class="sr-copy">
+        <p class="label">02 / Showroom</p>
+        <p class="big" id="sr-title" data-split>Tutto<br>in un unico<br><em>showroom.</em></p>
+        <a class="btn btn-light" href="https://www.google.com/maps/dir/?api=1&amp;destination=Centro+Casa+Via+Roma+18+Pratola+Serra" target="_blank" rel="noopener">Indicazioni stradali <span aria-hidden="true">↗</span></a>
+      </div>
+      <a class="sr-card sr-c1" href="#foto-showroom"><img src="assets/img/ig-showroom-nuovo.webp" alt="Angolo dello showroom con tavolino e poltrona" loading="lazy"></a>
+      <a class="sr-card sr-c2" href="#foto-showroom"><img src="assets/img/ig-showroom-divano.webp" alt="Divano esposto in showroom" loading="lazy"></a>
+    </section>
+
+    <section class="cat-sec" id="foto-showroom" aria-labelledby="h-foto-showroom">
+      <div class="cat-top"><div><p class="label">03 / Foto</p><h2 id="h-foto-showroom" data-split>Vieni a vederlo<br><em>dal vivo.</em></h2></div></div>
+      <div class="gal">
+        <button type="button" data-zoom="assets/img/ig-showroom-nuovo.webp" aria-label="Ingrandisci: Interno dello showroom Centro Casa"><img src="assets/img/ig-showroom-nuovo.webp" alt="Interno dello showroom Centro Casa" loading="lazy"></button>
+        <button type="button" data-zoom="assets/img/ig-showroom-isola.webp" aria-label="Ingrandisci: Cucina con isola esposta in showroom"><img src="assets/img/ig-showroom-isola.webp" alt="Cucina con isola esposta in showroom" loading="lazy"></button>
+        <button type="button" data-zoom="assets/img/ig-showroom-cucina.webp" aria-label="Ingrandisci: Cucina esposta in showroom"><img src="assets/img/ig-showroom-cucina.webp" alt="Cucina esposta in showroom" loading="lazy"></button>
+        <button type="button" data-zoom="assets/img/ig-showroom-divano.webp" aria-label="Ingrandisci: Divano esposto in showroom"><img src="assets/img/ig-showroom-divano.webp" alt="Divano esposto in showroom" loading="lazy"></button>
+      </div>
+    </section>
+
+    <section class="sec visit" id="orari" aria-labelledby="v-title">
+      <div class="visit-grid">
+        <div>
+          <p class="label">04 / Orari e contatti</p>
+          <h2 id="v-title" data-split>Ti aspettiamo<br><em>in Via Roma 18.</em></h2>
+          <p class="status" data-open-status>Controlla gli orari qui sotto</p>
+          <table class="hours">
+            <caption class="sr" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Orari di apertura</caption>
+            <tr data-days="1"><th scope="row">Lunedì</th><td>16:00 – 20:00</td></tr>
+            <tr data-days="2,3,4,5,6"><th scope="row">Martedì – Sabato</th><td>9:00 – 12:30 · 16:00 – 20:00</td></tr>
+            <tr data-days="0"><th scope="row">Domenica</th><td>Su appuntamento</td></tr>
+          </table>
+          <div class="visit-info">
+            <div><small>Indirizzo</small><a href="https://www.google.com/maps/dir/?api=1&amp;destination=Centro+Casa+Via+Roma+18+Pratola+Serra" target="_blank" rel="noopener">Via Roma 18<br>83039 Pratola Serra (AV) ↗</a></div>
+            <div><small>Contatti</small><a href="tel:+390825967114">0825 967114</a><a href="tel:+393881535764">388 153 5764 (anche WhatsApp)</a><a href="mailto:info@centrocasaitalia.it">info@centrocasaitalia.it</a></div>
+          </div>
+          <div class="actions">
+            <a class="btn btn-cream" href="https://wa.me/393881535764?text=Ciao%20Centro%20Casa%2C%20vorrei%20prenotare%20una%20visita%20in%20showroom" target="_blank" rel="noopener">Prenota su WhatsApp <span aria-hidden="true">↗</span></a>
+            <a class="btn btn-line" href="tel:+390825967114">Chiamaci <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+        <div class="map">
+          <iframe title="Mappa di Centro Casa a Pratola Serra" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3011.7563759449945!2d14.850181815592629!3d40.9868152286939!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x133a2d7b93f3f791%3A0x28e00e9aeb5b73ad!2sCentro+Casa+Sas+Mobili+Elettrodomestici!5e0!3m2!1sit!2sit!4v1481104083423"></iframe>
+        </div>
+      </div>
+      <div class="cats-pdf">
+        <small>Cataloghi da sfogliare (PDF)</small>
+        <ul>
+          <li><a href="http://www.centrocasaitalia.it/download/CATALOGO-2024.pdf" target="_blank" rel="noopener">Catalogo 2024 ↗</a></li>
+          <li><a href="http://www.centrocasaitalia.it/download/VORREI%202024%20-%20Catalogo%20Generale-Rev.%2012-23%20-%20WEB.pdf" target="_blank" rel="noopener">Vorrei 2024, catalogo generale ↗</a></li>
+          <li><a href="http://www.centrocasaitalia.it/download/4%20CAT.%20MATERASSI%20RETI%202023.pdf" target="_blank" rel="noopener">Materassi e reti 2023 ↗</a></li>
+          <li><a href="http://www.centrocasaitalia.it/download/diman%20casa%20poltone%20relax.pdf" target="_blank" rel="noopener">Poltrone relax ↗</a></li>
+          <li><a href="http://www.centrocasaitalia.it/download/Dime_Catalogo2022.pdf" target="_blank" rel="noopener">Dime 2022 ↗</a></li>
+        </ul>
+      </div>
+    </section>
+  
+  </main>
+
+  <footer class="footer">
+    <div class="footer-top">
+      <a class="brand" href="#top" aria-label="Torna su"><span class="brand-icon" aria-hidden="true"></span><span>CENTRO<b>CASA</b><small>PRATOLA SERRA</small></span></a>
+      <nav class="footer-nav" aria-label="Link utili"><a href="index.html">Home</a><a href="cucine.html">Cucine</a><a href="arredamento.html">Arredamento</a><a href="bomboniere.html">Bomboniere</a><a href="chi-siamo.html">Chi siamo e orari</a><a href="faq.html">FAQ</a><a href="https://www.instagram.com/centro_casa_av/" target="_blank" rel="noopener">Instagram</a><a href="https://www.facebook.com/centrocasapratolaserra/" target="_blank" rel="noopener">Facebook</a><a href="#top">Torna su ↑</a></nav>
+    </div>
+    <div class="footer-bottom"><span>© <span data-year>2026</span> Centro Casa S.A.S. · P.IVA 02555250642</span><span>Via Roma 18 · 83039 Pratola Serra (AV)</span></div>
+  </footer>
+
+  <nav class="dock" aria-label="Contatto rapido">
+    <a href="tel:+390825967114"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 005 5L15 12l5 2v4a2 2 0 01-2 2A16 16 0 013 5a2 2 0 012-2"/></svg>Chiama</a>
+    <a class="wa" href="https://wa.me/393881535764?text=Ciao%20Centro%20Casa%2C%20vorrei%20prenotare%20una%20visita%20in%20showroom" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1112 20a8 8 0 01-4-1z"/></svg>WhatsApp</a>
+    <a href="https://www.google.com/maps/dir/?api=1&amp;destination=Centro+Casa+Via+Roma+18+Pratola+Serra" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.5-7-12a7 7 0 0114 0c0 5.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>Indicazioni</a>
+  </nav>
+  <dialog class="lightbox" aria-label="Foto ingrandita">
+    <button class="lb-close" type="button" aria-label="Chiudi">×</button>
+    <figure><img alt=""><figcaption></figcaption></figure>
+  </dialog>
+</body>
+</html>
