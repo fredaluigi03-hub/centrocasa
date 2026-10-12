@@ -133,7 +133,8 @@ if (!reduce && gsap && ScrollTrigger) {
       const linkEl = sec.querySelector('[data-c-link]');
       const N = cards.length;
       const step = desk ? 316 : 240; // altezza card + spaziatura 16px
-      const twistK = 38 / step, spinK = 0.09;
+      // angolo netto per card = curPos * (spinK - twistK): deve restare alto o le card sembrano ferme
+      const twistK = 38 / step, spinK = 0.5;
       const total = N * step;
       const wrap = gsap.utils.wrap(-total / 2, total / 2);
       const wrapIdx = gsap.utils.wrap(0, N);
@@ -192,6 +193,13 @@ if (!reduce && gsap && ScrollTrigger) {
         dragging = false;
         stage.classList.remove('is-dragging');
       };
+      // Rotella solo sopra la colonna: muove la galleria, la pagina resta ferma. Fuori dalla colonna la pagina scorre normale.
+      const onWheel = e => {
+        e.preventDefault();
+        focused = -1;
+        userPos += (e.deltaMode === 1 ? e.deltaY * 32 : e.deltaY) * 1.2;
+      };
+      stage.addEventListener('wheel', onWheel, { passive: false });
       stage.addEventListener('pointerdown', onDown);
       addEventListener('pointermove', onMove, { passive: true });
       addEventListener('pointerup', onUp, { passive: true });
@@ -252,6 +260,7 @@ if (!reduce && gsap && ScrollTrigger) {
 
       return () => {
         gsap.ticker.remove(tick);
+        stage.removeEventListener('wheel', onWheel);
         stage.removeEventListener('pointerdown', onDown);
         removeEventListener('pointermove', onMove);
         removeEventListener('pointerup', onUp);
@@ -271,7 +280,7 @@ if (!reduce && gsap && ScrollTrigger) {
       // Sezioni bloccate create in ordine di pagina: ognuna deve conoscere lo spazio dei pin sopra di lei
       document.querySelectorAll('[data-hscroll], [data-cascade], .kitchen').forEach(sec => {
         if (sec.matches('[data-cascade]')) {
-          cleanups.push(setupCascade(sec, true));
+          cleanups.push(setupCascade(sec, false)); // niente pin: la pagina non resta bloccata
           return;
         }
         if (sec.matches('[data-hscroll]')) {
