@@ -286,11 +286,17 @@ section[id]{scroll-margin-top:var(--head)}
 .motion .w,.motion .dw{display:inline-block;vertical-align:top;will-change:transform,opacity,filter}
 .motion .w>span{display:inline-block;will-change:transform,opacity,filter}
 
-/* blocchi a tendina sovrapposti (Dantora StackingBlock) + card arrotondate */
+/* blocchi a tendina sovrapposti (Dantora StackingBlock: sticky top-0 min-h-screen rounded-t-[48px] shadow) */
 .card,.kcard,.room-main,.room-float,.sr-card,.about-photo,.gal button,.rev{border-radius:24px}
-.motion main>section:not(.hero),.motion main>.cat-sec{position:relative;border-radius:38px 38px 0 0;box-shadow:0 -22px 54px rgba(26,24,20,.13);border-top:1px solid rgba(255,255,255,.55);margin-top:-34px;will-change:transform,filter}
-.motion main>section.opener{margin-top:0;border-radius:38px 38px 0 0}
-.motion main>section.offer,.motion main>section.visit,.motion main>section.cat-end,.motion main>section.showroom{border-top-color:rgba(255,255,255,.15);box-shadow:0 -24px 60px rgba(0,0,0,.38)}
+.motion main section,.motion main .cat-sec{position:sticky;top:0;min-height:100svh;display:flex;flex-direction:column;justify-content:center;background:var(--paper);will-change:transform,filter}
+.motion main section.hero,.motion main section.reviews,.motion main section.kitchen,.motion main section.room,.motion main section.about{display:grid}
+.motion main section.reviews{align-items:center}
+.motion main section.showroom{display:flex;justify-content:flex-end}
+.motion main section.alt,.motion main .cat-sec.alt,.motion main section.faq{background:var(--paper-2)}
+.motion main section.offer,.motion main section.visit,.motion main section.cat-end,.motion main section.showroom{background:var(--deep);color:var(--cream)}
+.motion main section:not(.hero):not(.cat-hero):not(.is-first-block),.motion main .cat-sec{border-radius:48px 48px 0 0;box-shadow:0 -24px 60px rgba(26,24,20,.18);border-top:1px solid rgba(255,255,255,.65);overflow:clip}
+.motion main section.offer,.motion main section.visit,.motion main section.cat-end,.motion main section.showroom{border-top-color:rgba(255,255,255,.18);box-shadow:0 -28px 70px rgba(0,0,0,.45)}
+.motion main>.pin-spacer{position:sticky!important;overflow:visible!important}
 
 html.lenis,html.lenis body{height:auto}
 .lenis.lenis-smooth{scroll-behavior:auto!important}
@@ -312,7 +318,7 @@ html.lenis,html.lenis body{height:auto}
 @media(max-width:900px){
   :root{--head:68px;--pad:6vw}
   .card,.kcard,.room-main,.room-float,.sr-card,.about-photo,.gal button,.rev{border-radius:18px}
-  .motion main>section:not(.hero),.motion main>.cat-sec{border-radius:26px 26px 0 0;margin-top:-22px}
+  .motion main section:not(.hero):not(.cat-hero):not(.is-first-block),.motion main .cat-sec{border-radius:32px 32px 0 0}
   .topbar{gap:12px;font-size:10px}
   .topbar .hide-m{display:none}
   .burger{width:44px;height:44px;border:0;background:transparent;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:7px;z-index:42}

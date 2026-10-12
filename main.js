@@ -78,7 +78,7 @@ if (!reduce && gsap && ScrollTrigger) {
     const target = id.length > 1 && document.querySelector(id);
     if (!target) return false;
     const pinned = ScrollTrigger.getAll().find(st => st.pin === target);
-    const y = pinned ? pinned.start : target.getBoundingClientRect().top + scrollY - head();
+    const y = pinned ? pinned.start : (target.dataset.staticTop ? Number(target.dataset.staticTop) : target.getBoundingClientRect().top + scrollY - head());
     if (lenis && smooth) lenis.scrollTo(y);
     else scrollTo({ top: y, behavior: smooth ? 'smooth' : 'instant' });
     return true;
@@ -332,26 +332,60 @@ if (!reduce && gsap && ScrollTrigger) {
       document.querySelectorAll('[data-cascade]').forEach(sec => cleanups.push(setupCascade(sec, false)));
     }
 
-    // Dantora StackingBlock Curtains: ogni macro-blocco sale sopra il precedente con profondità 3D
-    const blocks = gsap.utils.toArray('main > section, main > .cat-sec');
+    // Dantora StackingBlock Curtains: ogni macro-blocco resta sticky mentre il successivo gli scorre sopra a tendina
+    const blocks = gsap.utils.toArray('main > section, main > .cat-sec, main > .pin-spacer > section, main > .pin-spacer > .cat-sec');
+    if (blocks[0]) blocks[0].classList.add('is-first-block');
+    const getWrap = sec => sec.parentElement?.classList.contains('pin-spacer') ? sec.parentElement : sec;
+    const onRefreshInit = () => {
+      blocks.forEach(sec => {
+        const w = getWrap(sec);
+        w.style.position = 'relative';
+        w.style.top = '0px';
+        if (w !== sec) { sec.style.position = 'relative'; sec.style.top = '0px'; }
+      });
+      blocks.forEach(sec => {
+        const w = getWrap(sec);
+        sec.dataset.staticTop = String(Math.round(w.getBoundingClientRect().top + scrollY - head()));
+      });
+    };
+    const onRefresh = () => {
+      const vh = window.innerHeight;
+      blocks.forEach((sec, i) => {
+        const w = getWrap(sec);
+        w.style.zIndex = String(10 + i);
+        sec.style.zIndex = String(10 + i);
+        w.style.position = 'sticky';
+        w.style.top = `${Math.min(0, vh - w.offsetHeight)}px`;
+      });
+    };
+    ScrollTrigger.addEventListener('refreshInit', onRefreshInit);
+    ScrollTrigger.addEventListener('refresh', onRefresh);
+    cleanups.push(() => {
+      ScrollTrigger.removeEventListener('refreshInit', onRefreshInit);
+      ScrollTrigger.removeEventListener('refresh', onRefresh);
+    });
+
     blocks.forEach((sec, i) => {
-      const wrapEl = sec.parentElement?.classList.contains('pin-spacer') ? sec.parentElement : sec;
-      wrapEl.style.zIndex = String(10 + i);
-      sec.style.zIndex = String(10 + i);
       if (i > 0) {
         const prev = blocks[i - 1];
-        gsap.fromTo(prev,
-          { scale: 1, filter: 'brightness(1)' },
-          {
-            scale: 0.975, filter: 'brightness(0.92)', transformOrigin: '50% 100%', ease: 'none',
-            scrollTrigger: { trigger: sec, start: 'top bottom', end: 'top 25%', scrub: true }
-          }
-        );
+        const isPinned = prev.parentElement?.classList.contains('pin-spacer');
+        const innerTarget = prev.matches('.opener')
+          ? prev.querySelector('.opener-frame')
+          : (isPinned ? Array.from(prev.children) : prev);
+        const st = { trigger: sec, start: 'top bottom', end: 'top top', scrub: true };
+        gsap.fromTo(prev, { filter: 'brightness(1)' }, { filter: 'brightness(0.86)', ease: 'none', scrollTrigger: st });
+        if (innerTarget) {
+          gsap.fromTo(innerTarget,
+            { scale: 1, y: 0 },
+            { scale: 0.95, y: -25, transformOrigin: '50% 0%', ease: 'none', scrollTrigger: { ...st } }
+          );
+        }
       }
     });
 
     // Se il layout cambia (desktop <-> mobile) i pin vengono ricreati: vanno ricalcolati prima degli altri trigger
     ScrollTrigger.sort();
+    onRefresh();
     return () => cleanups.forEach(fn => fn());
   });
 
@@ -390,10 +424,9 @@ if (!reduce && gsap && ScrollTrigger) {
 
   gsap.from('[data-fade]', { y: 24, opacity: 0, filter: 'blur(6px)', duration: 0.95, ease: 'power3.out', stagger: 0.1, delay: 0.35 });
 
-  // Offerta: lo sfondo passa da carta a verde, il prezzo conta
+  // Offerta: la tendina verde scuro sale sopra la galleria e il prezzo conta
   const offer = document.querySelector('.offer');
   if (offer) {
-    gsap.fromTo(offer, { backgroundColor: '#f4f0e9', color: '#26241f' }, { backgroundColor: '#2f3b31', color: '#f3eee5', ease: 'none', scrollTrigger: { trigger: offer, start: 'top 85%', end: 'top 25%', scrub: true } });
     gsap.from('.offer-list li', { x: 60, opacity: 0, filter: 'blur(6px)', duration: 0.85, ease: 'power3.out', stagger: 0.09, scrollTrigger: { trigger: '.offer-list', start: 'top 82%' } });
   }
   document.querySelectorAll('[data-count]').forEach(el => {
